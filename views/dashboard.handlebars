@@ -1,0 +1,57 @@
+{{#if isAuthenticated}}
+  <div class="container mt-5">
+
+    <h1 class="mb-4">Dashboard</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th>Edit/Delete</th>
+
+        </tr>
+
+
+      </thead>
+      {{#each users}}
+
+        <tbody id="userTable">
+
+          <tr>
+            <td>
+              <label for="">{{this.id}}</label>
+            </td>
+            <td>
+              <label for="">{{this.name}}</label>
+            </td>
+            <td>
+              <label for="">{{this.email}}</label>
+            </td>
+            <td>
+              <label for="">{{this.phone}}</label>
+            </td>
+            <td style="display: flex;flex-direction: row;">
+              <form action="/users/update/{{this.id}}" method="get" submit="submit">
+                {{!-- <input type="hidden" name="id" value="{{this.id}}"> --}}
+                <button type="submit" class="btn btn-info">
+                  Edit
+                </button>
+              </form>
+              <form action="/users/delete" method="post" submit="submit">
+                <input type="hidden" name="id" value="{{this.id}}">
+                <button type="submit" class="btn btn-danger">
+                  Del
+                </button>
+              </form>
+            </td>
+          </tr>
+
+        </tbody>
+
+      {{/each}}
+    </table>
+
+  </div>
+{{/if}}
